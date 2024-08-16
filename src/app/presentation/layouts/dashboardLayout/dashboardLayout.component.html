@@ -1,28 +1,57 @@
 <main class="flex flex-row mt-7">
+  @if(pathname !== 'home') {
   <nav
     class="hidden sm:flex flex-col ml-5 w-[370px] min-h-[calc(100vh-3.0rem)] bg-white bg-opacity-10 p-5 rounded-3xl"
   >
     <h1
       class="font-bold text-lg lg:text-3xl bg-gradient-to-br from-white via-white/50 bg-clip-text text-transparent"
     >
-      AngularGPT<span class="text-indigo-500">.</span>
+      <a href="/home">CourseGPT<span class="text-indigo-500">.</span></a>
     </h1>
-    <span class="text-xl">Bienvenido</span>
 
-    <div class="border-gray-700 border my-3"></div>
+    <div (click)="addNewChat()" class="cursor-pointer">
+      <a
+        class="flex items-center mt-2 mb-2 p-2 rounded-lg dark:text-white hover:bg-gray-100 hover:text-black border border-white/75"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler icon-tabler-circle-plus"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+          <path d="M9 12l6 0"></path>
+          <path d="M12 9l0 6"></path>
+        </svg>
+        <span class="ml-3">New Chat</span>
+      </a>
+    </div>
 
     <!-- Nav Links -->
-    @for (route of routes; track route.path) {
-      <app-sidebar-menu-item
-        [description]="route.data!['description']"
-        [icon]="route.data!['icon']"
-        [title]="route.data!['title']"
-        [path]="route.path!"
-      />
+    @for (chat of chats(); track $index) {
 
-    }
+    <app-sidebar-menu-item
+      [chatTitle]="
+        chat.messages!.length > 0 ? chat.messages![1].title! : 'New Chat'
+      "
+      [path]="'course/' + chat.course.courseCode + '/' + chat.chatHistoryId"
+      [deleteChat]="deleteChat.bind(this, chat.chatHistoryId)"
+      [isActive]="isActive()"
+    ></app-sidebar-menu-item>
+
     <!-- End Nav Links -->
+    } @if(chats().length === 0) {
+    <div class="text-center text-gray-500">No chats available</div>
+    }
   </nav>
+  }
 
   <section
     class="mx-3 sm:mx-20 flex flex-col w-full h-[calc(100vh-50px)] bg-white bg-opacity-10 p-5 rounded-3xl"

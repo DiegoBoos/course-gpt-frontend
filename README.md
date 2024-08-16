@@ -1,7 +1,8 @@
-# AngularGpt
+# Course GPT - Angular
 
-Pasos para ejecutar en dev
+Steps for executing the project:
 
-1. Instalar dependencias con `npm install`
-2. Ejecutar `ng serve` para levantar el servidor de desarrollo.
-3. Navegar a `http://localhost:4200/`
+1. Clone project
+2. Install dependencies with the ```npm/yarn install``` command
+3. Start the application with the `ng serve` command
+4. Navigate to `http://localhost:4200` in your browser

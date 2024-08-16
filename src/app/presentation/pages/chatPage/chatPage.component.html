@@ -1,0 +1,21 @@
+<div class="chat-container">
+  <div class="chat-messages">
+    <div class="grid gap-y-2">
+      <!-- Chat Messages -->
+
+      @for (message of messages(); track $index) { @if( message.isLLM ) {
+      <app-chat-message [text]="message.text" [source]="message.source" />
+      } @else {
+      <app-my-message [text]="message.text" />
+      } } @if (isLoading()) {
+      <app-typing-loader />
+      }
+    </div>
+  </div>
+
+  <!-- MessageBox -->
+  <app-text-message-box
+    placeholder="Message CourseGPT"
+    (onMessage)="handleMessage($event)"
+  />
+</div>

@@ -2,13 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {
+html,
+body {
   background-color: #000000;
   color: white;
-  font-family: 'Open Sans', sans-serif;
-
+  font-family: "Open Sans", sans-serif;
 }
-
 
 h1 {
   @apply text-3xl font-bold mb-4;
@@ -30,7 +29,6 @@ em {
   @apply italic text-pink-500;
 }
 
-
 .btn-primary {
   @apply bg-indigo-500 text-white font-bold py-2 px-4 rounded-xl hover:bg-indigo-700 transition-all duration-200 ease-in-out;
 }
@@ -47,12 +45,28 @@ em {
   @apply flex flex-col h-full overflow-x-auto mb-4 overflow-scroll;
 }
 
-
 /* Animations */
-
-.fade-in { animation: fadeIn .3s; }
+.fade-in {
+  animation: fadeIn 0.3s;
+}
 
 @keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.action-card {
+  @apply flex flex-col items-center justify-center p-3 bg-white bg-opacity-10 rounded-lg text-center transition transform hover:scale-105;
+}
+
+.icon {
+  @apply text-4xl mb-2 text-indigo-400;
+}
+
+.title {
+  @apply text-lg font-semibold;
 }
